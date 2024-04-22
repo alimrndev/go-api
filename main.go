@@ -5,6 +5,7 @@ import (
 	"net/http"
 
 	"github.com/alimrndev/go-api/config"
+	"github.com/alimrndev/go-api/handler"
 	"github.com/alimrndev/go-api/router"
 )
 
@@ -20,7 +21,10 @@ func main() {
 	// Inisialisasi router
 	router := router.NewRouter()
 
+	// CORS middleware configuration
+	corsRouter := handler.CORSMiddleware(router)
+
 	// Mulai server
 	log.Println("Server started on", conf.BaseURL)
-	log.Fatal(http.ListenAndServe(":8080", router))
+	log.Fatal(http.ListenAndServe(":8080", corsRouter))
 }

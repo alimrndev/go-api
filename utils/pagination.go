@@ -14,7 +14,7 @@ func Paginate(db *gorm.DB, pagination Pagination) (*gorm.DB, error) {
 		pagination.Page = 1
 	}
 	if pagination.PerPage == 0 {
-		pagination.PerPage = 10 // Default perPage, bisa disesuaikan dengan kebutuhan
+		pagination.PerPage = 100 // Default perPage, bisa disesuaikan dengan kebutuhan
 	}
 
 	offset := (pagination.Page - 1) * pagination.PerPage
