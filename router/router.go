@@ -12,7 +12,7 @@ func NewRouter() http.Handler {
 	r := mux.NewRouter()
 
 	// Define API version group
-	apiV1 := r.PathPrefix("/api/v1").Subrouter()
+	apiV1 := r.PathPrefix("/api").Subrouter()
 
 	// Rute untuk API User
 	userController := controller.NewUserController()
@@ -24,11 +24,11 @@ func NewRouter() http.Handler {
 
 	// Rute untuk API Menu
 	menuController := controller.NewMenuController()
-	apiV1.HandleFunc("/menu", menuController.CreateMenu).Methods("POST")
-	apiV1.HandleFunc("/menu", menuController.GetAllMenus).Methods("GET")
-	apiV1.HandleFunc("/menu/{id}", menuController.GetMenuByID).Methods("GET")
-	apiV1.HandleFunc("/menu/{id}", menuController.UpdateMenu).Methods("PUT")
-	apiV1.HandleFunc("/menu/{id}", menuController.DeleteMenu).Methods("DELETE")
+	apiV1.HandleFunc("/menu_items", menuController.CreateMenu).Methods("POST")
+	apiV1.HandleFunc("/menu_items", menuController.GetAllMenus).Methods("GET")
+	apiV1.HandleFunc("/menu_items/{id}", menuController.GetMenuByID).Methods("GET")
+	apiV1.HandleFunc("/menu_items/{id}", menuController.UpdateMenu).Methods("PUT")
+	apiV1.HandleFunc("/menu_items/{id}", menuController.DeleteMenu).Methods("DELETE")
 
 	return r
 }
